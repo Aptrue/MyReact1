@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { DrawerContentMenu } from '../shared/DrawerContentMenu';
 import Todo from '../screens/todo';
 import Detalhes from '../screens/detalhes'
+import Header from '../shared/header';
 
 
 const Drawer = createDrawerNavigator();
@@ -30,7 +31,19 @@ function MyDrawerMenu() {
     }
     
     >
-      <Drawer.Screen name="Home" component={Home}/>
+      <Drawer.Screen name="Home" component={Home} 
+      
+    //   options ={ ({ navigation }) => {
+    //     return {
+    //       headerTitle: () => <Header title='GameZone' navigation={navigation} />
+    //     }
+    //   }
+   
+   
+    //  }
+      
+      
+      />
       <Drawer.Screen name="Tarefas" component={Todo}/>
       <Drawer.Screen name="Detalhes" component={Detalhes}/>
     </Drawer.Navigator>

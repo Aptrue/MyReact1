@@ -1,11 +1,14 @@
 
-import  React , { useState }  from 'react';
-import { SafeAreaView, Alert, RefreshControl, FlatList, StyleSheet, Text, View, ScrollView, TouchableOpacity, ScrollViewComponent } from 'react-native';
+import  React , { useState,  useCallback, useMemo, useRef  }  from 'react';
+import { SafeAreaView, RefreshControl, FlatList, 
+  StyleSheet, Text, View, ScrollView,  } from 'react-native';
 
-import { DefaultTheme,Title, Avatar, 
-  Paragraph, FAB, List, Button, Card, Provider as PaperProvider, Appbar, TextInput, Colors} from 'react-native-paper';
+import { Title, Card, Provider as PaperProvider
+   } from 'react-native-paper';
 
 import { Estilo } from '../styles/globalStyleSheet';
+import RBSheet from "react-native-raw-bottom-sheet";
+
 
 
 
@@ -15,7 +18,7 @@ export default function Home({navigation}){
 
    const [reviews, setReviews] = useState([
     { title: 'React Native', rating: 5, body: 'lorem ipsum', key: '1' },
-    { title: 'AngularDev + Ionic Ui', rating: 4, body: 'onic é um SDK de código aberto completo para desenvolvimento de aplicativo móvel híbrido criado por Max Lynch, Ben Sperry e Adam Bradley da Drifty Co. em 2013.', key: '2' },
+    { title: 'AngularDev + Ionic Ui', rating: 4, body: 'Ionic é um SDK de código aberto completo para desenvolvimento de aplicativo móvel híbrido criado por Max Lynch, Ben Sperry e Adam Bradley da Drifty Co. em 2013.', key: '2' },
     { title: 'Cordova / Capacitor ', rating: 3, body: 'lorem ipsum', key: '3' },
     ]);
 
@@ -32,6 +35,11 @@ export default function Home({navigation}){
       setRefreshing(true);
       wait(2000).then(() => setRefreshing(false));
     }, []);
+
+
+
+  
+
 
     return <PaperProvider >
 
@@ -68,11 +76,15 @@ export default function Home({navigation}){
 
                                     )} />
                               
-                          
+                                       
                             </View>
                     </ScrollView>
+
+ 
         
             </SafeAreaView> 
 
            </PaperProvider>
 }
+
+

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, ImageBackground } from 'react-native';
 import {
     useTheme,
     Avatar,
@@ -26,35 +26,39 @@ export function DrawerContentMenu(props) {
         <View style={{flex:1}}>
             <DrawerContentScrollView {...props}>
                 <View style={styles.drawerContent}>
-                    <View style={styles.userInfoSection}>
 
-                        {/* Informacoes do Usuario  */}
+                 
+                             <View style={styles.userInfoSection}>
 
-                        <View style={{flexDirection:'row',marginTop: 15}}>
-                            <Avatar.Image 
-                                source={require('../assets/perfil.jpg')}
-                                size={50}
-                            />
-                            <View style={{marginLeft:15, flexDirection:'column'}}>
-                                <Title style={styles.title}>Armando Paulo</Title>
-                                <Caption style={styles.caption}>My First ReactNative</Caption>
+                                {/* Informacoes do Usuario  */}
+
+                                <View style={{flexDirection:'row',marginTop: 15}}>
+                                    <Avatar.Image 
+                                        source={require('../assets/perfil.jpg')}
+                                        size={50}
+                                    />
+                                    <View style={{marginLeft:15, flexDirection:'column'}}>
+                                        <Title style={styles.title}>Armando Paulo</Title>
+                                        <Caption style={styles.caption}>My First ReactNative</Caption>
+                                    </View>
+                                </View>
+
+                                {/* Fim Informacoes do Usuario  */}
+
+                                {/* <View style={styles.row}>
+                                    <View style={styles.section}>
+                                        <Paragraph style={[styles.paragraph, styles.caption]}>80</Paragraph>
+                                        <Caption style={styles.caption}>Following</Caption>
+                                    </View>
+                                    <View style={styles.section}>
+                                        <Paragraph style={[styles.paragraph, styles.caption]}>100</Paragraph>
+                                        <Caption style={styles.caption}>Followers</Caption>
+                                    </View>
+                                </View> */}
+
                             </View>
-                        </View>
-
-                        {/* Fim Informacoes do Usuario  */}
-
-                        {/* <View style={styles.row}>
-                            <View style={styles.section}>
-                                <Paragraph style={[styles.paragraph, styles.caption]}>80</Paragraph>
-                                <Caption style={styles.caption}>Following</Caption>
-                            </View>
-                            <View style={styles.section}>
-                                <Paragraph style={[styles.paragraph, styles.caption]}>100</Paragraph>
-                                <Caption style={styles.caption}>Followers</Caption>
-                            </View>
-                        </View> */}
-
-                    </View>
+                    
+                    
 
                     <Drawer.Section style={styles.drawerSection}>
                         <DrawerItem 
