@@ -14,7 +14,22 @@ function MyDrawerMenu() {
   return (
 
     <NavigationContainer>
-    <Drawer.Navigator drawerContent={props => <DrawerContentMenu {...props} />}>
+    <Drawer.Navigator drawerContent={props => <DrawerContentMenu {...props} />}
+    
+    screenOptions={
+
+      {
+        headerStyle: { backgroundColor: '#E535F3' }, 
+        drawerContentStyle: { 
+          // backgroundColor: '#E535F3', 
+        },
+        
+      }
+
+
+    }
+    
+    >
       <Drawer.Screen name="Home" component={Home}/>
       <Drawer.Screen name="Tarefas" component={Todo}/>
       <Drawer.Screen name="Detalhes" component={Detalhes}/>

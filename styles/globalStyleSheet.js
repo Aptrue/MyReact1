@@ -2,13 +2,24 @@ import { StyleSheet } from "react-native";
 
 
 export const Estilo = StyleSheet.create({
-       container: {
+       content: {
       paddingTop: 10,
       justifyContent: 'center',
       paddingLeft: 15,
       paddingRight: 15,
       // backgroundColor: '#FCFCFB',
     },
+    container: {
+      flex: 1,
+
+    },
+
+    scrollView: {
+      flex: 1,
+      backgroundColor: '#F0F0F0',
+    },
+
+
     textinput: {  
       
       marginBottom: 10
@@ -25,7 +36,7 @@ export const Estilo = StyleSheet.create({
     },
 
     titleText: {
-      fontSize: 20,
+      fontSize: 15,
       fontWeight: 'bold',
       color: '#333',
       borderBottomColor: '#E535F3',
@@ -38,3 +49,5 @@ export const Estilo = StyleSheet.create({
     }
   });
 
+ 
+  
