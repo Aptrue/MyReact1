@@ -1,9 +1,7 @@
-import { List} from 'react-native-paper';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { List, IconButton } from 'react-native-paper';
+import { StyleSheet, TouchableOpacity, Alert} from 'react-native';
 
-export default function Tarefas({item}){
-
-
+export default function Tarefas({item, removerTarefa}){
 
 
 
@@ -14,9 +12,27 @@ export default function Tarefas({item}){
 
     <List.Item style={styles.listTask}
     title={item.text}
-    description={'Detalhes Da teraf Ficarao aqui, Chave: '+item.key}
+    description={'Detalhes   Ficarão aqui, Chave: '+item.key}
     left={props => <List.Icon {...props} icon="account-details" />}
-    right={props => <List.Icon {...props} icon="delete"/>}
+    right={props => <IconButton {...props} icon="delete" onPress={() => {
+
+       Alert.alert('Aviso', 'Tem certeza que deseja deletar?',
+
+       [
+        {
+          text: "Cancelar",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "SIM", onPress:  () => removerTarefa }
+      ]
+
+
+       );
+
+
+
+    }}/>}
 
 
     />
@@ -37,5 +53,5 @@ const styles = StyleSheet.create({
       shadowColor: 'red',
       backgroundColor: '#FCFCFB',
     }
-  
+
   });

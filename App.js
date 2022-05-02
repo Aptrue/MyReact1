@@ -4,45 +4,56 @@ import Tabs from './routes/tabs';
 import MyDrawerMenu from './routes/DrawerMenu';
 import AppLoading from 'expo-app-loading';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import LoginStackNavigation from './routes/loginStack';
 
 export default function App() {
 
 const[estado, setEstado]=useState(false);
 
-useEffect ( ()=>{
-   
-   let nota = VerificarToken ();
-   
+ useEffect ( ()=>{
+
+   VerificarToken();
+
+
+
 });
 
+
+
+async function VerificarToken(s) {
+
+  await AsyncStorage.getItem('user').then((res) =>{
+
+       console.log(res);
+
+       if(res!=null){
+         setEstado(true);
+       }
+  }
+  );
+}
+
             if(estado){
-              return (     
+              return (
                 <MyDrawerMenu/>
               );
 
             } else {
-              
-               return <Tabs/>
 
-                
+               return <LoginStackNavigation/>
+
+
 
             }
 
 
+
+
+
+
+
+
 }
 
-
-const  VerificarToken = async () =>{
-
-    await AsyncStorage.getItem('token').then((res) =>{
-         setEstado(true);
-    },
-    (error) => {
-         
-          this.estado.valor = this.estado.valor;
-    }
-    
-    );
-}
 
 

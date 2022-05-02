@@ -25,14 +25,14 @@ const Todo = () => {
   let key = defaultKey + 1;
 
   const [todos, setTodos] = useState([
-    { text: 'Ler um livro qualquer', key: '1' },
+    { text: 'Lerrrr um livro qualquer', key: '1' },
     { text: 'Assistir um filme', key: '2' },
     { text: 'Codar um pouco', key: '3' }
   ]);
- 
+
  const adicionarTarefas = ()=>{
-    
-    let existe = false; // caso a tarefa exista 
+
+    let existe = false; // caso a tarefa exista
     setKey(key)   //actualizando o valor da chave
 
     todos.forEach( valor => {  // verificar se a tarefa existe
@@ -45,7 +45,7 @@ const Todo = () => {
       todos.push(tarefa);
           setTarefa({text:'', key: 0});  //insreriindo a tarefa
       } else{
-             
+
         Alert.alert('Ophaa', 'Verifique se a tarefa esta bem escrita ou repetida');
         console.log('====================================');
         console.log('Verifique se a tarefa esta bem escrita ou repetida');
@@ -53,20 +53,27 @@ const Todo = () => {
       }
 
 
-  
-    
-    
+ }
+
+
+ //Remover tarefa
+
+
+ const removerTarefa = () =>{
+
+  console.log('tentou apagar');
+
  }
 
   return (
-  
 
-< PaperProvider>
+
+<PaperProvider>
 
        {/* <Cabeca pageName={page}/> */}
-        
+
         <ScrollView>
-                      <View style={Estilo.content}>                       
+                      <View style={Estilo.content}>
                             <TextInput  label="Tarefa" onChangeText={ (value)=> setTarefa({text: value, key: defaultKey})} placeholder='Digite a tarefa' style={Estilo.textinput}></TextInput>
                             <Button icon="briefcase-plus-outline" color='#E535F3' mode="contained" onPress={adicionarTarefas}>Adicionar</Button>
                       </View>
@@ -75,23 +82,23 @@ const Todo = () => {
                           <FlatList
                               data={todos}
                               renderItem={({ item }) => (
-                              
+
                                 <TouchableOpacity>
-                                
-                                    <Tarefas item={item} />
+
+                                    <Tarefas item={item} removerTarefa={removerTarefa}/>
 
                                 </TouchableOpacity>
                               )}
                             />
-                           
+
                       </View>
 
         </ScrollView>
-     
-        <Provider>  
+
+        <Provider>
            {/* fab */}
                 <Portal color="#E535F3">
-                  <FAB.Group 
+                  <FAB.Group
                     open={open}
                     icon={open ? 'calendar-today' : 'plus'}
                     actions={[

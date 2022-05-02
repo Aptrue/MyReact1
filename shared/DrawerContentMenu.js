@@ -27,19 +27,19 @@ export function DrawerContentMenu(props) {
             <DrawerContentScrollView {...props}>
                 <View style={styles.drawerContent}>
 
-                 
+
                              <View style={styles.userInfoSection}>
 
                                 {/* Informacoes do Usuario  */}
 
                                 <View style={{flexDirection:'row',marginTop: 15}}>
-                                    <Avatar.Image 
+                                    <Avatar.Image
                                         source={require('../assets/perfil.jpg')}
                                         size={50}
                                     />
                                     <View style={{marginLeft:15, flexDirection:'column'}}>
                                         <Title style={styles.title}>Armando Paulo</Title>
-                                        <Caption style={styles.caption}>My First ReactNative</Caption>
+                                        <Caption style={styles.caption}>Meu Primeiro App React</Caption>
                                     </View>
                                 </View>
 
@@ -57,14 +57,14 @@ export function DrawerContentMenu(props) {
                                 </View> */}
 
                             </View>
-                    
-                    
+
+
 
                     <Drawer.Section style={styles.drawerSection}>
-                        <DrawerItem 
+                        <DrawerItem
                             icon={({color, size}) => (
-                                <Icon 
-                                name="home-outline" 
+                                <Icon
+                                name="home-outline"
                                 color={color}
                                 size={size}
                                 />
@@ -72,10 +72,10 @@ export function DrawerContentMenu(props) {
                             label="Home"
                             onPress={() => {props.navigation.navigate('Home')}}
                         />
-                        <DrawerItem 
+                        <DrawerItem
                             icon={({color, size}) => (
-                                <Icon 
-                                name="briefcase-outline" 
+                                <Icon
+                                name="briefcase-outline"
                                 color={color}
                                 size={size}
                                 />
@@ -83,10 +83,10 @@ export function DrawerContentMenu(props) {
                             label="Tarefas"
                             onPress={() => {props.navigation.navigate('Tarefas')}}
                         />
-                        <DrawerItem 
+                        <DrawerItem
                             icon={({color, size}) => (
-                                <Icon 
-                                name="phone-log" 
+                                <Icon
+                                name="phone-log"
                                 color={color}
                                 size={size}
                                 />
@@ -94,10 +94,10 @@ export function DrawerContentMenu(props) {
                             label="Registros"
                             onPress={() => {props.navigation.navigate('BookmarkScreen')}}
                         />
-                        <DrawerItem 
+                        <DrawerItem
                             icon={({color, size}) => (
-                                <Icon 
-                                name="cog-outline" 
+                                <Icon
+                                name="cog-outline"
                                 color={color}
                                 size={size}
                                 />
@@ -105,10 +105,10 @@ export function DrawerContentMenu(props) {
                             label="Configuracoes"
                             onPress={() => {props.navigation.navigate('SettingScreen')}}
                         />
-                        <DrawerItem 
+                        <DrawerItem
                             icon={({color, size}) => (
-                                <Icon 
-                                name="account-check-outline" 
+                                <Icon
+                                name="account-check-outline"
                                 color={color}
                                 size={size}
                                 />
@@ -130,10 +130,10 @@ export function DrawerContentMenu(props) {
                 </View>
             </DrawerContentScrollView>
             <Drawer.Section style={styles.bottomDrawerSection}>
-                <DrawerItem 
+                <DrawerItem
                     icon={({color, size}) => (
-                        <Icon 
-                        name="exit-to-app" 
+                        <Icon
+                        name="exit-to-app"
                         color={color}
                         size={size}
                         />

@@ -26,7 +26,7 @@ export default function Tabs({navigation}) {
     labelStyle={{ fontSize: 12 }}
     barStyle={{ backgroundColor: "#fff" }}
     >
-     
+
      <Tab.Screen
         name="Home"
         component={Home}
@@ -44,6 +44,17 @@ export default function Tabs({navigation}) {
         options={
           {
           tabBarLabel: 'Tarefass',
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="calendar-check-outline" color={color} size={26} />
+          ),
+        }}
+      />
+         <Tab.Screen
+        name="tarefa"
+        component={Todo}
+        options={
+          {
+          tabBarLabel: 'Teste',
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="calendar-check-outline" color={color} size={26} />
           ),
