@@ -3,7 +3,6 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "../screens/home";
 import Login from "../screens/login";
 
-import MyDrawerMenu from "./DrawerMenu";
 
 export default function LoginStackNavigation(){
 

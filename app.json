@@ -23,7 +23,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ED56F7"
-      }
+      },
+      "package": "com.armando_paulo.MyReact1"
     },
     "web": {
       "favicon": "./assets/favicon.png"

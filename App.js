@@ -1,14 +1,14 @@
 import 'react-native-gesture-handler';
 import  React ,{ useState, useEffect } from 'react';
 import Tabs from './routes/tabs';
-import MyDrawerMenu from './routes/DrawerMenu';
 import AppLoading from 'expo-app-loading';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LoginStackNavigation from './routes/loginStack';
+import NestedRoute from './routes/NestedRoute';
 
 export default function App() {
 
-const[estado, setEstado]=useState(false);
+const[estado, setEstado]=useState(true);
 
  useEffect ( ()=>{
 
@@ -35,7 +35,7 @@ async function VerificarToken(s) {
 
             if(estado){
               return (
-                <MyDrawerMenu/>
+                <NestedRoute/>
               );
 
             } else {

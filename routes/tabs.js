@@ -2,7 +2,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import MyDrawerMenu from '../routes/DrawerMenu'
+
 
 import Home from '../screens/home';
 import Todo from '../screens/todo';

@@ -20,6 +20,7 @@ import { Title, DefaultTheme,
     ContributionGraph,
     StackedBarChart
   } from "react-native-chart-kit";
+import HeaderShared from '../shared/header';
 
 const optionsPerPage = [2, 3, 4];
 
@@ -56,13 +57,15 @@ export default function Detalhes({ route, navigation }){
 
     //fim chart
 
-    return <PaperProvider >
+    return  (
+    <PaperProvider>
 
-    <SafeAreaView style={Estilo.container}>
 
-            <ScrollView contentContainerStyle={Estilo.scrollView} >
+            <HeaderShared pageName="Detalhes" navigation={navigation} />
 
-                    <View style={Estilo.content}>
+            <ScrollView>
+
+                <View style={Estilo.content}>
 
 
 
@@ -76,97 +79,81 @@ export default function Detalhes({ route, navigation }){
                                   />
 
 
-                                      <Card.Content>
-                                        <Paragraph>{body}</Paragraph>
-                                      </Card.Content>
+                                <Card.Content>
+
+                                  <Paragraph>{body}</Paragraph>
+                                </Card.Content>
                                 </Card>
 
 
-                          <DataTable>
-                            <DataTable.Header>
-                              <DataTable.Title>Criadores</DataTable.Title>
-                              <DataTable.Title numeric>Ranking</DataTable.Title>
-                              <DataTable.Title numeric>Usuários</DataTable.Title>
-                            </DataTable.Header>
 
-                            <DataTable.Row>
-                            <DataTable.Cell>Frozen yogurt</DataTable.Cell>
-                            <DataTable.Cell numeric>159</DataTable.Cell>
-                            <DataTable.Cell numeric>6.0</DataTable.Cell>
-                            </DataTable.Row>
+                                <Card style={Estilo.Card}>
+                                <Card.Title
+                                    title={title}
+                                    subtitle={rating}
+                                    left={(props) => <Avatar.Icon {...props} icon="semantic-web" />}
+                                    right={(props) => <IconButton {...props} icon="apps" onPress={() => {}} />}
+                                  />
 
-                            <DataTable.Row>
-                            <DataTable.Cell>Ice cream sandwich</DataTable.Cell>
-                            <DataTable.Cell numeric>237</DataTable.Cell>
-                            <DataTable.Cell numeric>8.0</DataTable.Cell>
-                            </DataTable.Row>
 
-                            <DataTable.Pagination
-                            page={page}
-                            numberOfPages={3}
-                            onPageChange={(page) => setPage(page)}
-                            label="1-2 of 6"
-                            optionsPerPage={optionsPerPage}
-                            itemsPerPage={itemsPerPage}
-                            setItemsPerPage={setItemsPerPage}
-                            showFastPagination
-                            optionsLabel={'Rows per page'}
-                            />
-                            </DataTable>
+                                <Card.Content>
+
+                                  <Paragraph>{body}</Paragraph>
+                                </Card.Content>
+                                </Card>
 
 
 
-                            <View>
-                                          <Text>Chart em BAR</Text>
-                                          <BarChart
-
-                                            data={{
-                                              labels: ["January", "February", "March", "April", "May", "June"],
-                                              datasets: [
-                                                {
-                                                  data: [
-                                                    Math.random() * 100,
-                                                    Math.random() * 100,
-                                                    Math.random() * 100,
-                                                    Math.random() * 100,
-                                                    Math.random() * 100,
-                                                    Math.random() * 100
-                                                  ]
-                                                }
-                                              ]
-                                            }}
-                                            width={Dimensions.get("window").width} // from react-native
-                                            height={220}
-                                            yAxisLabel="$"
-                                            yAxisSuffix="k"
-                                            yAxisInterval={1} // optional, defaults to 1
-                                            chartConfig={{
-                                              backgroundColor: "#e26a00",
-                                              backgroundGradientFrom: "#fb8c00",
-                                              backgroundGradientTo: "#ffa726",
-                                              decimalPlaces: 2, // optional, defaults to 2dp
-                                              color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                                              labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                                              style: {
-                                                borderRadius: 16
-                                              },
-                                              propsForDots: {
-                                                r: "6",
-                                                strokeWidth: "2",
-                                                stroke: "#ffa726"
-                                              }
-                                            }}
-                                            bezier
-                                            style={{
-                                              marginRight: 60,
-                                              borderRadius: 16,
-                                            }}
-                                          />
-                            </View>
-
-                    </View>
+                                <Card style={Estilo.Card}>
+                                <Card.Title
+                                    title={title}
+                                    subtitle={rating}
+                                    left={(props) => <Avatar.Icon {...props} icon="semantic-web" />}
+                                    right={(props) => <IconButton {...props} icon="apps" onPress={() => {}} />}
+                                  />
 
 
+                                <Card.Content>
+
+                                  <Paragraph>{body}</Paragraph>
+                                </Card.Content>
+                                </Card>
+
+
+
+                                <Card style={Estilo.Card}>
+                                <Card.Title
+                                    title={title}
+                                    subtitle={rating}
+                                    left={(props) => <Avatar.Icon {...props} icon="semantic-web" />}
+                                    right={(props) => <IconButton {...props} icon="apps" onPress={() => {}} />}
+                                  />
+
+
+                                <Card.Content>
+
+                                  <Paragraph>{body}</Paragraph>
+                                </Card.Content>
+                                </Card>
+
+
+
+                                <Card style={Estilo.Card}>
+                                <Card.Title
+                                    title={title}
+                                    subtitle={rating}
+                                    left={(props) => <Avatar.Icon {...props} icon="semantic-web" />}
+                                    right={(props) => <IconButton {...props} icon="apps" onPress={() => {}} />}
+                                  />
+
+
+                                <Card.Content>
+
+                                  <Paragraph>{body}</Paragraph>
+                                </Card.Content>
+                                </Card>
+
+                 </View>
 
 
 
@@ -174,9 +161,9 @@ export default function Detalhes({ route, navigation }){
 
 
 
-    </SafeAreaView>
+    </PaperProvider>
 
-   </PaperProvider>
+    );
 }
 
 

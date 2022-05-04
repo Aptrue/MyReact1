@@ -1,5 +1,5 @@
-import { StyleSheet } from "react-native";
-
+import { StyleSheet, Dimensions } from "react-native";
+const screenHeight = Dimensions.get('window').height
 
 export const Estilo = StyleSheet.create({
        content: {
@@ -7,21 +7,31 @@ export const Estilo = StyleSheet.create({
       justifyContent: 'center',
       paddingLeft: 15,
       paddingRight: 15,
+
       // backgroundColor: '#FCFCFB',
+    },
+    header: {
+
+      backgroundColor: "#ED56F7"
+
+    },
+    headerTitle: {
+      color: '#FCFCFB'
     },
     container: {
       flex: 1,
 
     },
 
-    scrollView: {
+    View: {
       flex: 1,
       backgroundColor: '#F0F0F0',
+      marginTop:7
     },
 
 
-    textinput: {  
-      
+    textinput: {
+
       marginBottom: 10
     },
     fab: {
@@ -42,12 +52,11 @@ export const Estilo = StyleSheet.create({
       borderBottomColor: '#E535F3',
       paddingBottom: 4,
     },
-  
+
     Card:{
-         
+
       marginBottom: 20,
     }
   });
 
- 
-  
+

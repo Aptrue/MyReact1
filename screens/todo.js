@@ -1,10 +1,11 @@
 
-import  React , { useState }  from 'react';
+import  React , { useState, useRef }  from 'react';
 import {  Alert, FlatList, View, ScrollView, TouchableOpacity } from 'react-native';
 
 import { FAB, Portal, Provider, List, Button,  Provider as PaperProvider, TextInput, } from 'react-native-paper';
 import Tarefas from '../components/tarefa';
 import { Estilo } from '../styles/globalStyleSheet';
+
 
 const Todo = () => {
 
@@ -18,6 +19,9 @@ const Todo = () => {
 
   //fim do fab variable
 
+
+
+
   const [page, setHome] = useState('Minhas Tarefas');
   const [tarefa, setTarefa] = useState({ text:'', key: 0  });
   const [defaultKey,  setKey]=useState(21);
@@ -29,6 +33,11 @@ const Todo = () => {
     { text: 'Assistir um filme', key: '2' },
     { text: 'Codar um pouco', key: '3' }
   ]);
+
+
+   //INicio DropdownAlert//
+      let dropDownAlertRef = useRef();
+    /** Fim DropdownAlert */
 
  const adicionarTarefas = ()=>{
 
@@ -44,26 +53,17 @@ const Todo = () => {
     if(tarefa.text!='' && existe==false){ // comparar se o valor nao eh igaual a espaco em branco
       todos.push(tarefa);
           setTarefa({text:'', key: 0});  //insreriindo a tarefa
+
       } else{
 
-        Alert.alert('Ophaa', 'Verifique se a tarefa esta bem escrita ou repetida');
-        console.log('====================================');
-        console.log('Verifique se a tarefa esta bem escrita ou repetida');
-        console.log('====================================');
+        Alert.alert('Atenção', 'Campo em Branco ou tarefa Repetida');
       }
 
 
  }
 
 
- //Remover tarefa
 
-
- const removerTarefa = () =>{
-
-  console.log('tentou apagar');
-
- }
 
   return (
 
@@ -85,7 +85,7 @@ const Todo = () => {
 
                                 <TouchableOpacity>
 
-                                    <Tarefas item={item} removerTarefa={removerTarefa}/>
+                                    <Tarefas item={item}/>
 
                                 </TouchableOpacity>
                               )}

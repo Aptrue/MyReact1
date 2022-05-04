@@ -1,39 +1,34 @@
-import React from 'react';
-import { StyleSheet, Text, View} from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
+import * as React from 'react';
+import { Appbar } from 'react-native-paper';
+import { Platform } from 'react-native';
+import { Estilo } from '../styles/globalStyleSheet';
 
-export default function Header({ title, navigation }) {
+import { DrawerActions } from '@react-navigation/native';
+
+
+
+const MORE_ICON = Platform.OS === 'ios' ? 'dots-horizontal' : 'dots-vertical';
+
+
+
+export default function  HeaderShared ({pageName, navigation})  {
+
 
   const openMenu = () => {
-    navigation.openDrawer();
+    navigation.dispatch(DrawerActions.toggleDrawer());
   }
 
-  return (
-    <View style={styles.header}>
-      {/* <MaterialIcons name='menu' size={28} onPress={openMenu} style={styles.icon} /> */}
-      <View>
-        <Text style={styles.headerText}>{title}</Text>
-      </View>
-    </View>
-  );
-}
 
-const styles = StyleSheet.create({
-  header: {
-    width: '100%',
-    height: '100%',
-    flexDirection: 'row',
-    // alignItems: 'center',
-    // justifyContent: 'center',
-  },
-  headerText: {
-    fontWeight: 'bold',
-    fontSize: 20,
-    color: '#FFFFFF',
-    letterSpacing: 1,
-  },
-  icon: {
-    position: 'absolute',
-    left: 16,
-  }
-});
+
+ return (
+
+        <Appbar.Header style={Estilo.header}>
+        <Appbar.Action icon="menu" color='#ffff' onPress={openMenu} />
+        {/* <Appbar.BackAction onPress={() => {}} /> */}
+        <Appbar.Content title={pageName}  titleStyle={Estilo.headerTitle}/>
+        <Appbar.Action icon="magnify" onPress={() => {}} />
+        <Appbar.Action icon={MORE_ICON} onPress={() => {}} />
+        </Appbar.Header>
+
+        )
+ }

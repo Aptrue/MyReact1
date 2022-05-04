@@ -7,7 +7,6 @@ import { Provider as PaperProvider
    } from 'react-native-paper';
 
 import { Formik } from 'formik';
-import DrawerMenu from '../routes/DrawerMenu';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
@@ -61,7 +60,7 @@ const [user, setUser] = useState({email:null, password:null});
                                               />
 
 
-                                              <Button color='maroon' title="Entrar" onPress={props.handleSubmit} />
+                                              <Button color='maroon' title="Entrarrrr" onPress={props.handleSubmit} />
 
                                             </View>
                                           )}
