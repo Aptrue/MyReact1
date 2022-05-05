@@ -24,10 +24,10 @@ async function VerificarToken(s) {
 
   await AsyncStorage.getItem('user').then((res) =>{
 
-       console.log(res);
+
 
        if(res!=null){
-         setEstado(true);
+         setEstado(false);
        }
   }
   );

@@ -1,12 +1,13 @@
 
 import  React , { useState,  useCallback, useMemo, useRef  }  from 'react';
 import { SafeAreaView, RefreshControl, FlatList,
-  StyleSheet,Alert, Text, View, ScrollView,TextInput, Button } from 'react-native';
+  StyleSheet,Alert, Image, Text, View, ScrollView,TextInput } from 'react-native';
 
-import { Provider as PaperProvider
+import { Provider as PaperProvider, Button
    } from 'react-native-paper';
 
 import { Formik } from 'formik';
+import * as yup from 'yup';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
@@ -35,12 +36,22 @@ const [user, setUser] = useState({email:null, password:null});
                     >
                             <View style={styles.content}>
 
-
+                                     <View style={styles.imageV}>
+                                          <Image style={styles.stretch} source={require('../assets/react.png')}/>
+                                     </View>
 
                                       <Formik
 
                                           initialValues={{ email: '', password: '' }}
-                                          onSubmit={(values) => loginAuth(values, navigation)}
+                                          onSubmit={(values) => {
+
+                                            // loginAuth(values, navigation);
+
+                                            Alert.alert('Hahaha', 'Quer Logar ne kkkk');
+
+
+                                          } }
+
                                           >
                                           {props => (
                                             <View>
@@ -59,8 +70,9 @@ const [user, setUser] = useState({email:null, password:null});
                                                 value={props.values.password}
                                               />
 
-
-                                              <Button color='maroon' title="Entrarrrr" onPress={props.handleSubmit} />
+                                              <Button icon="login" mode="outlined" color='#fff' onPress={props.handleSubmit} touchSoundDisabled='true'>
+                                                Entrar
+                                              </Button>
 
                                             </View>
                                           )}
@@ -68,8 +80,20 @@ const [user, setUser] = useState({email:null, password:null});
 
 
 
+
+
                             </View>
+
+
                     </ScrollView>
+
+
+                    <View style={styles.footer}>
+
+                    <Text style={styles.footerText}>From{'\n'}<Text>Armando Paulo</Text></Text>
+
+                    </View>
+
 
 
 
@@ -99,7 +123,6 @@ export const loginAuth = async (data, pros) =>{
                 if(res.message=="Unauthorized"){
                   Alert.alert('Erro', JSON.stringify(res));
                 } else if (res.user!=null){
-
                    saveUsar(res);
                 }
           },
@@ -132,11 +155,11 @@ const styles = StyleSheet.create({
 
 
   content: {
-    marginTop: 340,
+    marginTop: 250,
     justifyContent: 'center',
     marginLeft: 15,
     marginRight: 15,
-    backgroundColor: '#FFFFFF',
+    // backgroundColor: '#FFFFFF',
   },
   container: {
     flex: 1,
@@ -148,8 +171,35 @@ const styles = StyleSheet.create({
     backgroundColor: '#FF5FCA',
   },
   textInput: {
+    padding: 10,
+    borderRadius: 20,
+    borderColor: 'silver',
+    backgroundColor: '#ffff',
+    marginBottom: 20,
 
-    padding: 10
   },
+  stretch: {
+    width: 66,
+    height: 58,
+    marginBottom: 5,
+  },
+
+  imageV: {
+    alignItems: 'center',
+    paddingBottom: 16
+  },
+  footer:{
+    flexDirection: 'row',
+    height: 50,
+    // justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute', //Here is the trick
+    bottom: 0,
+  }
+  ,
+  footerText:{
+    color: '#fff',
+  }
+
 
 });

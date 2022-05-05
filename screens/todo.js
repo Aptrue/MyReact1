@@ -5,9 +5,10 @@ import {  Alert, FlatList, View, ScrollView, TouchableOpacity } from 'react-nati
 import { FAB, Portal, Provider, List, Button,  Provider as PaperProvider, TextInput, } from 'react-native-paper';
 import Tarefas from '../components/tarefa';
 import { Estilo } from '../styles/globalStyleSheet';
+import HeaderShared from '../shared/header'
 
 
-const Todo = () => {
+const Todo = ({navigation}) => {
 
   // Fab variable
 
@@ -70,7 +71,7 @@ const Todo = () => {
 
 <PaperProvider>
 
-       {/* <Cabeca pageName={page}/> */}
+        <HeaderShared pageName="Todo Area" navigation={navigation} />
 
         <ScrollView>
                       <View style={Estilo.content}>
