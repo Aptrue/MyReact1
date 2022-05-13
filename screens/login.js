@@ -9,6 +9,9 @@ import { Provider as PaperProvider, Button
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Spinner from 'react-native-loading-spinner-overlay';
+
+
 
 
 
@@ -19,8 +22,7 @@ export default function login({navigation}){
 
 
 const [user, setUser] = useState({email:null, password:null});
-
-
+const [estado, setState]=useState(false);
 
 
 
@@ -36,6 +38,12 @@ const [user, setUser] = useState({email:null, password:null});
                     >
                             <View style={styles.content}>
 
+                            <Spinner
+                            visible={estado}
+                            textContent={'Entrando...'}
+                            textStyle={styles.footerText}
+                            />
+
                                      <View style={styles.imageV}>
                                           <Image style={styles.stretch} source={require('../assets/react.png')}/>
                                      </View>
@@ -45,10 +53,12 @@ const [user, setUser] = useState({email:null, password:null});
                                           initialValues={{ email: '', password: '' }}
                                           onSubmit={(values) => {
 
-                                            // loginAuth(values, navigation);
+                                            loginAuth(values, navigation);
 
-                                            Alert.alert('Hahaha', 'Quer Logar ne kkkk');
+                                            // Alert.alert('Hahaha', 'Quer Logar ne kkkk');
 
+                                            // setState(true);
+                                            // console.log(estado);
 
                                           } }
 

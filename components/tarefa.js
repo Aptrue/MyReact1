@@ -24,7 +24,7 @@ export default function Tarefas({item}){
           onPress: () => console.log("Cancel Pressed"),
           style: "cancel"
         },
-        { text: "SIM", onPress:  () => console.log('ok') }
+        { text: "SIM", onPress:  () => console.log('deleta') }
       ]
 
 

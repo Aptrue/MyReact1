@@ -1,121 +1,194 @@
 
-import  React , { useState,  useCallback,useEffect, useMemo, useRef }  from 'react';
-import { SafeAreaView, RefreshControl, FlatList,
-  StyleSheet, Text, View, ScrollView, Button  } from 'react-native';
+import  React , { useState, useRef }  from 'react';
+import {  Alert, Modal, FlatList, View, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
 
-import { Title, Card, Provider as PaperProvider,
-   } from 'react-native-paper';
-
+import { FAB, Portal,  Provider, List, Button,  Provider as PaperProvider, TextInput, Title, } from 'react-native-paper';
+import Tarefas from '../components/tarefa';
 import { Estilo } from '../styles/globalStyleSheet';
-import HeaderShared from '../shared/header';
-
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import HeaderShared from '../shared/header'
 
 
 
+const Home = ({navigation}) => {
+
+  // Fab variable
+
+  const [state, setState] = React.useState({ open: false });
+
+  const onStateChange = ({ open }) => setState({ open });
+
+  const { open } = state;
+
+  //fim do fab variable
 
 
+  //Modal Variable
 
-export default function Home({navigation}){
-
-
-
-
-
-  useEffect(() => {
-
-       VerificarNome();
-
-
-  });
-
-
-  async function VerificarNome() {
-
-    await AsyncStorage.getItem('user').then((res) =>{
-
-        console.log('====================================');
-        console.log(res['user']);
-        console.log('====================================');
-    }
-    );
+  const [modalVisible, setModalVisible] = useState(false);
+  const showModal = () => {
+    setModalVisible(true);
   }
 
-   const home = 'Home';
-
-   const [reviews, setReviews] = useState([
-    { title: 'React Native', rating: 5, body: 'React Native é uma biblioteca Javascript criada pelo Facebook. É usada para desenvolver aplicativos para os sistemas Android e iOS de forma nativa', key: '1' },
-    { title: 'AngularDev + Ionic Ui', rating: 4, body: 'Ionic é um SDK de código aberto completo para desenvolvimento de aplicativo móvel híbrido criado por Max Lynch, Ben Sperry e Adam Bradley da Drifty Co. em 2013.', key: '2' },
-    { title: 'Cordova / Capacitor ', rating: 3, body: 'Apache Cordova é uma estrutura de desenvolvimento de aplicativo móvel criada pela Nitobi. A Adobe Systems comprou a Nitobi em 2011, rebatizou-a como PhoneGap e, mais tarde, lançou uma versão de código aberto do software chamada Apache Cordova', key: '3' },
-    ]);
-
-    const wait = (timeout) => {
-
-      // tempo para refrescar a page
-
-      return new Promise(resolve => setTimeout(resolve, timeout));
-    }
-
-    const [refreshing, setRefreshing] = React.useState(false);  //Variavel pra mediar o fresh
-
-    const onRefresh = React.useCallback(() => {
-      setRefreshing(true);
-      wait(2000).then(() => setRefreshing(false));
-    }, []);
+  //fim modal Variable
 
 
 
-    //Fim do refresher
+
+  const [page, setHome] = useState('Minhas Tarefas');
+  const [tarefa, setTarefa] = useState({ text:'', key: 0  });
+  const [defaultKey,  setKey]=useState(21);
+
+  let key = defaultKey + 1;
+
+  const [todos, setTodos] = useState([
+    { text: 'Lerrrr um livro qualquer', key: '1' },
+    { text: 'Assistir um filme', key: '2' },
+    { text: 'Codar um pouco', key: '3' }
+  ]);
 
 
-    return ( <PaperProvider >
+ const adicionarTarefas = ()=>{
 
-            <SafeAreaView style={Estilo.container}>
+    let existe = false; // caso a tarefa exista
+    setKey(key)   //actualizando o valor da chave
 
-            <HeaderShared  pageName="Home" navigation={navigation}/>
+    todos.forEach( valor => {  // verificar se a tarefa existe
+         if(tarefa.text==valor.text){
+           existe = true;
+         }
+    });
 
-                    <ScrollView
-                    nestedScrollEnabled={true}
-                    // contentContainerStyle={Estilo.scrollView}
-                      refreshControl={
-                        <RefreshControl
-                          refreshing={refreshing}
-                          onRefresh={onRefresh}
-                        />
+    if(tarefa.text!='' && existe==false){ // comparar se o valor nao eh igaual a espaco em branco
+      todos.push(tarefa);
+          setTarefa({text:'', key: 0});  //insreriindo a tarefa
+          setModalVisible(false);
+      } else{
+        Alert.alert('Atenção', 'Campo em Branco ou tarefa Repetida');
+
+      }
+
+
+ }
+
+
+
+
+  return (
+
+
+<PaperProvider>
+
+        <HeaderShared pageName="Todo Area" navigation={navigation} />
+
+        <ScrollView>
+
+
+
+                    <Modal
+                            animationType="slide"
+                            transparent={true}
+                            visible={modalVisible}
+                            onRequestClose={() => {
+                              Alert.alert("Modal has been closed.");
+                              setModalVisible(!modalVisible);
+                            }}
+                          >
+
+                        <View style={styles.modalView}>
+                        <Title style={styles.modalText}>Criar nova tarefa</Title>
+                        <TextInput  label="Tarefa" onChangeText={ (value)=> setTarefa({text: value, key: defaultKey})} placeholder='Digite a tarefa' style={Estilo.textinput}></TextInput>
+                        <Button icon="briefcase-plus-outline" color='#E535F3' mode="contained" onPress={adicionarTarefas}>Adicionar</Button>
+                        </View>
+
+                   </Modal>
+
+                      <View style={Estilo.container}>
+                          <FlatList
+                              data={todos}
+                              renderItem={({ item }) => (
+
+                                <TouchableOpacity>
+
+                                    <Tarefas item={item}/>
+
+                                </TouchableOpacity>
+                              )}
+                            />
+
+                      </View>
+
+        </ScrollView>
+
+        <Provider>
+           {/* fab */}
+                <Portal color="#E535F3">
+                  <FAB.Group
+                    open={open}
+                    icon={open ? 'calendar-today' : 'plus'}
+                    actions={[
+                      { icon: 'plus', onPress: () => {showModal()} },
+                      {
+                        icon: 'star',
+                        label: 'Star',
+                        onPress: () => console.log('Pressed star'),
+                      },
+                      {
+                        icon: 'email',
+                        label: 'Email',
+                        color: 'red',
+                        onPress: () => console.log('Pressed email'),
+                      },
+                      {
+                        icon: 'bell',
+                        label: 'Remind',
+                        onPress: () => console.log('Pressed notifications'),
+                        small: false,
+                      },
+                    ]}
+                    onStateChange={onStateChange}
+                    onPress={() => {
+                      if (open) {
+                        // do something if the speed dial is open
                       }
-
-                    >
-                            <View style={Estilo.content}>
-
-
-                                    <FlatList  data={reviews} renderItem={({ item }) => (
+                    }}
+                  />
+                </Portal>
 
 
 
 
+    </Provider>
+</PaperProvider>
 
-                                        <Card style={Estilo.Card} onPress={() => navigation.navigate('Detalhes', item)}>
-                                              <Card.Content>
-                                                <Title><Text style={Estilo.titleText}>{ item.title }</Text>{':  '}<Text>{item.rating}</Text></Title>
-                                              </Card.Content>
-                                              {/* <Card.Cover source={{ uri: 'https://picsum.photos/700' }} /> */}
-                                        </Card>
+  );
+};
 
+export default Home;
 
+const styles = StyleSheet.create({
 
-                                    )} />
+  modalView: {
+    marginTop: 100,
+    marginHorizontal: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 25,
+    // alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
+  },
 
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center"
+  }
+});
 
-                            </View>
-
-                    </ScrollView>
-
-
-            </SafeAreaView>
-
-           </PaperProvider>
-
-           );
-}
 
 

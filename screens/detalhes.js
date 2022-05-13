@@ -38,8 +38,6 @@ const CustomDefaultTheme = {
 export default function Detalhes({ route, navigation }){
 
 
-    const { title, rating, body, key} = route.params;
-
     const [page, setPage] = React.useState(0);
     const [itemsPerPage, setItemsPerPage] = React.useState(optionsPerPage[0]);
 
@@ -48,14 +46,6 @@ export default function Detalhes({ route, navigation }){
     }, [itemsPerPage]);
 
 
-
-    //chart
-    const data = {
-      labels: ["Swim", "Bike", "Run"], // optional
-      data: [0.4, 0.6, 0.8]
-    };
-
-    //fim chart
 
     return  (
     <PaperProvider>
@@ -68,92 +58,7 @@ export default function Detalhes({ route, navigation }){
                 <View style={Estilo.content}>
 
 
-
-
-                                <Card style={Estilo.Card}>
-                                <Card.Title
-                                    title={title}
-                                    subtitle={rating}
-                                    left={(props) => <Avatar.Icon {...props} icon="semantic-web" />}
-                                    right={(props) => <IconButton {...props} icon="apps" onPress={() => {}} />}
-                                  />
-
-
-                                <Card.Content>
-
-                                  <Paragraph>{body}</Paragraph>
-                                </Card.Content>
-                                </Card>
-
-
-
-                                <Card style={Estilo.Card}>
-                                <Card.Title
-                                    title={title}
-                                    subtitle={rating}
-                                    left={(props) => <Avatar.Icon {...props} icon="semantic-web" />}
-                                    right={(props) => <IconButton {...props} icon="apps" onPress={() => {}} />}
-                                  />
-
-
-                                <Card.Content>
-
-                                  <Paragraph>{body}</Paragraph>
-                                </Card.Content>
-                                </Card>
-
-
-
-                                <Card style={Estilo.Card}>
-                                <Card.Title
-                                    title={title}
-                                    subtitle={rating}
-                                    left={(props) => <Avatar.Icon {...props} icon="semantic-web" />}
-                                    right={(props) => <IconButton {...props} icon="apps" onPress={() => {}} />}
-                                  />
-
-
-                                <Card.Content>
-
-                                  <Paragraph>{body}</Paragraph>
-                                </Card.Content>
-                                </Card>
-
-
-
-                                <Card style={Estilo.Card}>
-                                <Card.Title
-                                    title={title}
-                                    subtitle={rating}
-                                    left={(props) => <Avatar.Icon {...props} icon="semantic-web" />}
-                                    right={(props) => <IconButton {...props} icon="apps" onPress={() => {}} />}
-                                  />
-
-
-                                <Card.Content>
-
-                                  <Paragraph>{body}</Paragraph>
-                                </Card.Content>
-                                </Card>
-
-
-
-                                <Card style={Estilo.Card}>
-                                <Card.Title
-                                    title={title}
-                                    subtitle={rating}
-                                    left={(props) => <Avatar.Icon {...props} icon="semantic-web" />}
-                                    right={(props) => <IconButton {...props} icon="apps" onPress={() => {}} />}
-                                  />
-
-
-                                <Card.Content>
-
-                                  <Paragraph>{body}</Paragraph>
-                                </Card.Content>
-                                </Card>
-
-                 </View>
+                </View>
 
 
 

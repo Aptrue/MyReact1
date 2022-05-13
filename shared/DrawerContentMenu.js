@@ -75,17 +75,6 @@ export function DrawerContentMenu(props) {
                         <DrawerItem
                             icon={({color, size}) => (
                                 <Icon
-                                name="briefcase-outline"
-                                color={color}
-                                size={size}
-                                />
-                            )}
-                            label="Tarefas"
-                            onPress={() => {props.navigation.navigate('Tarefas')}}
-                        />
-                        <DrawerItem
-                            icon={({color, size}) => (
-                                <Icon
                                 name="phone-log"
                                 color={color}
                                 size={size}
