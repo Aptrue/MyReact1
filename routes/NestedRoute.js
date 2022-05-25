@@ -6,6 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '../screens/home';
 import Detalhes from '../screens/detalhes'
 import Login from '../screens/login'
+import SearchPage from '../screens/SeachPage';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { DrawerContentMenu } from '../shared/DrawerContentMenu';
 
@@ -60,6 +61,7 @@ export default function NestedRoute({navigation}) {
         headerStyle: { backgroundColor: '#E535F3'},
       }}>
       <Stack.Screen name="Home" component={DrawerMenu} options={ {headerShown: false}} />
+      <Stack.Screen name="Search" component={SearchPage} options={ {headerShown: false}} />
       <Stack.Screen name="Detalhes" component={Detalhes} options={ {headerShown: true}}/>
       <Stack.Screen name='Login'   component={Login} options={{ headerShown: false }}></Stack.Screen>
     </Stack.Navigator>

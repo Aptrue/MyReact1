@@ -1,13 +1,12 @@
 
 import  React , { useState }  from 'react';
-import { SafeAreaView, Alert, FlatList, StyleSheet, Text, View, ScrollView,Dimensions, TouchableOpacity, ScrollViewComponent } from 'react-native';
+import {  Text, View, ScrollView} from 'react-native';
 
-import { Title, DefaultTheme,
-  Paragraph,  Card, Provider as PaperProvider,IconButton, DataTable,Avatar, DefaultTheme as PaperDefaultTheme} from 'react-native-paper';
+import { Title, Provider as PaperProvider, DefaultTheme as PaperDefaultTheme} from 'react-native-paper';
   import {
-    NavigationContainer,
+
     DefaultTheme as NavigationDefaultTheme,
-    DarkTheme as NavigationDarkTheme
+
   } from '@react-navigation/native';
 
   import { Estilo } from '../styles/globalStyleSheet';
@@ -48,7 +47,8 @@ const { text, key}=route.params;
             <ScrollView>
 
                 <View style={Estilo.content}>
-                     <Text>{text} {key}</Text>
+                     <Title>{text}</Title>
+                     <Text>{key}</Text>
                 </View>
 
 

@@ -1,8 +1,8 @@
 
 import  React , { useState, useRef }  from 'react';
-import {  Alert, Modal, FlatList, View, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
+import {  Alert, FlatList, View, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
 
-import { FAB, Portal,  Provider, List, Button,  Provider as PaperProvider, TextInput, Title, } from 'react-native-paper';
+import { FAB, Portal,  Provider, List, Button,  Provider as PaperProvider, Modal, Text, Title, TextInput } from 'react-native-paper';
 import Tarefas from '../components/tarefa';
 import { Estilo } from '../styles/globalStyleSheet';
 import HeaderShared from '../shared/header'
@@ -28,7 +28,8 @@ const Home = ({navigation}) => {
   const showModal = () => {
     setModalVisible(true);
   }
-
+  const hideModal = () => setModalVisible(false);
+  const containerStyle = {backgroundColor: 'white', padding: 20};
   //fim modal Variable
 
 
@@ -83,25 +84,6 @@ const Home = ({navigation}) => {
         <ScrollView>
 
 
-
-                    <Modal
-                            animationType="slide"
-                            transparent={true}
-                            visible={modalVisible}
-                            onRequestClose={() => {
-                              Alert.alert("Modal has been closed.");
-                              setModalVisible(!modalVisible);
-                            }}
-                          >
-
-                        <View style={styles.modalView}>
-                        <Title style={styles.modalText}>Criar nova tarefa</Title>
-                        <TextInput  label="Tarefa" onChangeText={ (value)=> setTarefa({text: value, key: defaultKey})} placeholder='Digite a tarefa' style={Estilo.textinput}></TextInput>
-                        <Button icon="briefcase-plus-outline" color='#E535F3' mode="contained" onPress={adicionarTarefas}>Adicionar</Button>
-                        </View>
-
-                   </Modal>
-
                       <View style={Estilo.container}>
                           <FlatList
                               data={todos}
@@ -109,7 +91,7 @@ const Home = ({navigation}) => {
 
                                 <TouchableOpacity>
 
-                                    <Tarefas item={item} navigation={navigation} />
+                                    <Tarefas item={item} allTask={todos} navigation={navigation} />
 
                                 </TouchableOpacity>
                               )}
@@ -123,37 +105,14 @@ const Home = ({navigation}) => {
 
                 {/* fab */}
 
-                <Portal color="#E535F3">
-                  <FAB.Group
-                    open={open}
-                    icon={open ? 'calendar-today' : 'plus'}
-                    actions={[
-                      { icon: 'plus', onPress: () => {showModal()} },
-                      {
-                        icon: 'star',
-                        label: 'Star',
-                        onPress: () => console.log('Pressed star'),
-                      },
-                      {
-                        icon: 'email',
-                        label: 'Email',
-                        color: 'red',
-                        onPress: () => console.log('Pressed email'),
-                      },
-                      {
-                        icon: 'bell',
-                        label: 'Remind',
-                        onPress: () => console.log('Pressed notifications'),
-                        small: false,
-                      },
-                    ]}
-                    onStateChange={onStateChange}
-                    onPress={() => {
-                      if (open) {
-                        // do something if the speed dial is open
-                      }
-                    }}
-                  />
+                <Portal>
+
+                      <FAB
+                        style={styles.fab}
+                        small
+                        icon="plus"
+                        onPress={showModal}
+                      />
 
                 </Portal>
 
@@ -161,6 +120,15 @@ const Home = ({navigation}) => {
 
 
          </Provider>
+         <Provider>
+                        <Portal>
+                          <Modal visible={modalVisible} onDismiss={hideModal} contentContainerStyle={containerStyle}>
+                          <Title style={styles.modalText}>Criar nova tarefa</Title>
+                          <TextInput  label="Tarefa" onChangeText={ (value)=> setTarefa({text: value, key: defaultKey})} placeholder='Digite a tarefa' style={Estilo.textinput}></TextInput>
+                          <Button icon="briefcase-plus-outline" color='#E535F3' mode="contained" onPress={adicionarTarefas}>Adicionar</Button>
+                          </Modal>
+                        </Portal>
+                      </Provider>
 
 
 </PaperProvider>
@@ -192,7 +160,16 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: "center"
-  }
+  },
+  fab: {
+    position: 'absolute',
+    backgroundColor: "#ED56F7",
+    margin: 16,
+    right: 0,
+    bottom: 20,
+    padding: 7,
+    color: '#ffff'
+  },
 });
 
 

@@ -1,7 +1,7 @@
 import { List, IconButton } from 'react-native-paper';
 import { StyleSheet, TouchableOpacity, Alert} from 'react-native';
 
-export default function Tarefas({item, navigation}){
+export default function Tarefas({allTask,item, navigation}){
 
 
 
@@ -26,9 +26,8 @@ export default function Tarefas({item, navigation}){
           onPress: () => console.log("Cancel Pressed"),
           style: "cancel"
         },
-        { text: "SIM", onPress:  () => console.log('deleta') }
+        { text: "SIM", onPress:  () => console.log(item) }
       ]
-
 
        );
 

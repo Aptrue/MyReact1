@@ -26,8 +26,8 @@ export default function  HeaderShared ({pageName, navigation})  {
         <Appbar.Action icon="menu" color='#ffff' onPress={openMenu} />
         {/* <Appbar.BackAction onPress={() => {}} /> */}
         <Appbar.Content title={pageName}  titleStyle={Estilo.headerTitle}/>
-        <Appbar.Action icon="magnify" onPress={() => {}} />
-        <Appbar.Action icon={MORE_ICON} onPress={() => {}} />
+        <Appbar.Action color='#ffff' icon="magnify" onPress={() => navigation.navigate('Search')} />
+        <Appbar.Action  color='#ffff' icon={MORE_ICON} onPress={() => {}} />
         </Appbar.Header>
 
         )

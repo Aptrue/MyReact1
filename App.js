@@ -4,6 +4,7 @@ import AppLoading from 'expo-app-loading';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LoginStackNavigation from './routes/loginStack';
 import NestedRoute from './routes/NestedRoute';
+import { useLoadedToken } from './hooks/useLoadedToken';
 
 export default function App() {
 
@@ -12,30 +13,12 @@ const[protype, setProperty]=useState({
  name: "" , idade: "", genero: ""
 });
 
- useEffect ( ()=>{
-
-   VerificarToken();
-   console.log(protype.idade);
-
-
-});
+const isLoadingComplete = useLoadedToken();
 
 
 
-async function VerificarToken(s) {
 
-  await AsyncStorage.getItem('user').then((res) =>{
-
-
-
-       if(res!=null){
-         setEstado(true);
-       }
-  }
-  );
-}
-
-            if(estado){
+            if(isLoadingComplete){
               return (
                 <NestedRoute/>
               );
