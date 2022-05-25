@@ -17,9 +17,18 @@ import {
 } from '@react-navigation/drawer';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export function DrawerContentMenu(props) {
+
+
+    const logout = async () => {
+        await AsyncStorage.removeItem('Task');
+        await AsyncStorage.removeItem('user').finally(
+            props.navigation.navigate('Login')
+        );
+    }
 
     return(
 
@@ -128,7 +137,7 @@ export function DrawerContentMenu(props) {
                         />
                     )}
                     label="Sair"
-                    onPress={() => {console.log('sair');}}
+                    onPress={logout}
                 />
             </Drawer.Section>
         </View>

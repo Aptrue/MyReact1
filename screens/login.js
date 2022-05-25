@@ -75,7 +75,10 @@ const [estado, setState]=useState(false);
                                               <TextInput style={styles.textInput}
 
                                                 // multiline
+                                                autoCorrect={false}
+                                                secureTextEntry={true}
                                                 placeholder='Password'
+                                                placeholderTextColor="silver"
                                                 onChangeText={props.handleChange('password')}
                                                 value={props.values.password}
                                               />

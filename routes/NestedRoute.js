@@ -5,14 +5,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Home from '../screens/home';
 import Detalhes from '../screens/detalhes'
+import Login from '../screens/login'
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { DrawerContentMenu } from '../shared/DrawerContentMenu';
 
 
-function MyStack() {
-
-
-}
 
 function DrawerMenu({navigation}) {
 
@@ -40,20 +37,7 @@ function DrawerMenu({navigation}) {
     }
 
     >
-      <Drawer.Screen name="Home" component={Home}
-
-    //   options ={ ({ navigation }) => {
-    //     return {
-    //       headerTitle: () => <Header title='GameZone' navigation={navigation} />
-    //     }
-    //   }
-
-
-    //  }
-
-
-      />
-      <Drawer.Screen name="Detalhes" component={Detalhes} />
+      <Drawer.Screen name="Home" component={Home}/>
     </Drawer.Navigator>
 
   );
@@ -68,8 +52,16 @@ export default function NestedRoute({navigation}) {
 
     <NavigationContainer>
 
-    <Stack.Navigator>
+    <Stack.Navigator
+      initialRouteName="Home"
+      screenOptions={{
+        headerMode: 'screen',
+        headerTintColor: 'white',
+        headerStyle: { backgroundColor: '#E535F3'},
+      }}>
       <Stack.Screen name="Home" component={DrawerMenu} options={ {headerShown: false}} />
+      <Stack.Screen name="Detalhes" component={Detalhes} options={ {headerShown: true}}/>
+      <Stack.Screen name='Login'   component={Login} options={{ headerShown: false }}></Stack.Screen>
     </Stack.Navigator>
 
 

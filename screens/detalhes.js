@@ -37,27 +37,18 @@ const CustomDefaultTheme = {
 
 export default function Detalhes({ route, navigation }){
 
-
-    const [page, setPage] = React.useState(0);
-    const [itemsPerPage, setItemsPerPage] = React.useState(optionsPerPage[0]);
-
-    React.useEffect(() => {
-      setPage(0);
-    }, [itemsPerPage]);
-
-
+const { text, key}=route.params;
 
     return  (
     <PaperProvider>
 
 
-            <HeaderShared pageName="Detalhes" navigation={navigation} />
+            {/* <HeaderShared pageName="Detalhes" navigation={navigation} /> */}
 
             <ScrollView>
 
                 <View style={Estilo.content}>
-
-
+                     <Text>{text} {key}</Text>
                 </View>
 
 

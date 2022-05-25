@@ -109,7 +109,7 @@ const Home = ({navigation}) => {
 
                                 <TouchableOpacity>
 
-                                    <Tarefas item={item}/>
+                                    <Tarefas item={item} navigation={navigation} />
 
                                 </TouchableOpacity>
                               )}
@@ -119,8 +119,10 @@ const Home = ({navigation}) => {
 
         </ScrollView>
 
-        <Provider>
-           {/* fab */}
+         <Provider>
+
+                {/* fab */}
+
                 <Portal color="#E535F3">
                   <FAB.Group
                     open={open}
@@ -152,12 +154,15 @@ const Home = ({navigation}) => {
                       }
                     }}
                   />
+
                 </Portal>
 
 
 
 
-    </Provider>
+         </Provider>
+
+
 </PaperProvider>
 
   );
