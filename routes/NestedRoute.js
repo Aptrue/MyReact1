@@ -66,6 +66,7 @@ export default function NestedRoute({navigation}) {
       <Stack.Screen name="Detalhes" component={Detalhes} options={ {headerShown: true}}/>
       <Stack.Screen name='Login'   component={Login} options={{ headerShown: false }}></Stack.Screen>
       <Stack.Screen name='Definições' component={SettingsPage}  options={ {headerShown: true}}></Stack.Screen>
+      <Stack.Screen name='Perfil' component={SettingsPage}  options={ {headerShown: true}}></Stack.Screen>
     </Stack.Navigator>
 
 
