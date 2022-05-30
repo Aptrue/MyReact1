@@ -32,7 +32,7 @@ export const Estilo = StyleSheet.create({
 
     textinput: {
 
-      marginBottom: 10
+      marginBottom: 15
     },
     fab: {
       position: 'absolute',

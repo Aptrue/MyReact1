@@ -4,6 +4,7 @@ import {  Alert, FlatList, View, ScrollView, TouchableOpacity, StyleSheet } from
 
 import { FAB, Portal,  Provider, List, Button,  Provider as PaperProvider, Modal, Text, Title, TextInput } from 'react-native-paper';
 import Tarefas from '../components/tarefa';
+import { Formik } from 'formik';
 import { Estilo } from '../styles/globalStyleSheet';
 import HeaderShared from '../shared/header'
 
@@ -29,7 +30,7 @@ const Home = ({navigation}) => {
     setModalVisible(true);
   }
   const hideModal = () => setModalVisible(false);
-  const containerStyle = {backgroundColor: 'white', padding: 20};
+  const containerStyle = {backgroundColor: 'white', padding: 20, marginVertical: 10};
   //fim modal Variable
 
 
@@ -37,21 +38,18 @@ const Home = ({navigation}) => {
 
   const [page, setHome] = useState('Minhas Tarefas');
   const [tarefa, setTarefa] = useState({ text:'', key: 0  });
-  const [defaultKey,  setKey]=useState(21);
-
-  let key = defaultKey + 1;
+  let key = Math.random();
 
   const [todos, setTodos] = useState([
-    { text: 'Lerrrr um livro qualquer', key: '1' },
-    { text: 'Assistir um filme', key: '2' },
-    { text: 'Codar um pouco', key: '3' }
+    { text: 'Lerrrr um livro qualquer', key: '1', des: '' },
+    { text: 'Assistir um filme', key: '2', des: '' },
+    { text: 'Codar um pouco', key: '3', des: '' }
   ]);
 
 
  const adicionarTarefas = ()=>{
 
     let existe = false; // caso a tarefa exista
-    setKey(key)   //actualizando o valor da chave
 
     todos.forEach( valor => {  // verificar se a tarefa existe
          if(tarefa.text==valor.text){
@@ -72,6 +70,17 @@ const Home = ({navigation}) => {
  }
 
 
+ //Remover Tarefa
+
+ const removerTarefa = (key) =>{
+    setTodos(prevTodos => {
+
+       return prevTodos = todos.filter(prevTodos.key!==key);
+
+    });
+ }
+
+
 
 
   return (
@@ -79,7 +88,7 @@ const Home = ({navigation}) => {
 
 <PaperProvider>
 
-        <HeaderShared pageName="Todo Area" navigation={navigation} />
+        <HeaderShared pageName="My Fucking Task" navigation={navigation} />
 
         <ScrollView>
 
@@ -91,7 +100,7 @@ const Home = ({navigation}) => {
 
                                 <TouchableOpacity>
 
-                                    <Tarefas item={item} allTask={todos} navigation={navigation} />
+                                    <Tarefas item={item} remover={removerTarefa} navigation={navigation} />
 
                                 </TouchableOpacity>
                               )}
@@ -124,8 +133,53 @@ const Home = ({navigation}) => {
                         <Portal>
                           <Modal visible={modalVisible} onDismiss={hideModal} contentContainerStyle={containerStyle}>
                           <Title style={styles.modalText}>Criar nova tarefa</Title>
-                          <TextInput  label="Tarefa" onChangeText={ (value)=> setTarefa({text: value, key: defaultKey})} placeholder='Digite a tarefa' style={Estilo.textinput}></TextInput>
-                          <Button icon="briefcase-plus-outline" color='#E535F3' mode="contained" onPress={adicionarTarefas}>Adicionar</Button>
+                          <Formik
+
+                                      initialValues={tarefa}
+                                      onSubmit={(values) => {
+
+                                              console.log(values)
+
+                                      } }
+
+                                      >
+                                      {props => (
+                                        <View>
+                                          <TextInput style={styles.textInput}
+
+                                            placeholder='Email'
+                                            label='Tarefa'
+                                            mode='outlined'
+                                            onChangeText={props.handleChange('text')}
+                                            value={props.values.text}
+                                          />
+
+                                          <TextInput style={styles.textInput}
+
+                                            // multiline
+                                            autoCorrect={false}
+                                            label='Descrição'
+                                            mode='outlined'
+                                            secureTextEntry={true}
+                                            placeholder='descrição'
+                                            onChangeText={props.handleChange('des')}
+                                            value={props.values.des}
+                                          />
+
+                                              <TextInput style={styles.Inputdesabled}
+                                              disabled
+                                              label='key'
+                                              mode='outlined'
+                                              placeholder='key'
+                                              onChangeText={props.handleChange('key')}
+                                              value={key}
+                                              />
+
+                                           <Button icon="briefcase-plus-outline" color='#E535F3' mode="contained" onPress={props.handleSubmit}>Adicionar</Button>
+
+                                        </View>
+                                      )}
+                           </Formik>
                           </Modal>
                         </Portal>
                       </Provider>
@@ -170,6 +224,10 @@ const styles = StyleSheet.create({
     padding: 7,
     color: '#ffff'
   },
+  Inputdesabled: {
+    display: 'none',
+    paddingTop: 10
+  }
 });
 
 

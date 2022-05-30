@@ -61,7 +61,7 @@ export default function NestedRoute({navigation}) {
         headerStyle: { backgroundColor: '#E535F3'},
       }}>
       <Stack.Screen name="Home" component={DrawerMenu} options={ {headerShown: false}} />
-      <Stack.Screen name="Search" component={SearchPage} options={ {headerShown: false}} />
+      <Stack.Screen name="Search" component={SearchPage} options={ {headerShown: true}} />
       <Stack.Screen name="Detalhes" component={Detalhes} options={ {headerShown: true}}/>
       <Stack.Screen name='Login'   component={Login} options={{ headerShown: false }}></Stack.Screen>
     </Stack.Navigator>

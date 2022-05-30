@@ -89,7 +89,7 @@ const [estado, setState]=useState(false);
 
                                             </View>
                                           )}
-                                          </Formik>
+                                      </Formik>
 
 
 

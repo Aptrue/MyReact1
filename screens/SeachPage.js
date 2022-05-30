@@ -1,6 +1,6 @@
 
 import  React , { useState }  from 'react';
-import {  Text, View, ScrollView, StyleSheet} from 'react-native';
+import {  Text, View, ScrollView, StyleSheet, FlatList} from 'react-native';
 
 import { Title, Searchbar, Provider as PaperProvider, DefaultTheme as PaperDefaultTheme, Appbar} from 'react-native-paper';
 
@@ -13,22 +13,44 @@ import { Title, Searchbar, Provider as PaperProvider, DefaultTheme as PaperDefau
 
 export default function SeachPage({ route, navigation }){
 
-    const [searchQuery, setSearchQuery] = React.useState('hhh');
+    const [searchQuery, setSearchQuery] = React.useState('');
+    const [arrayDemo, setArrayDemo] = React.useState([{name: 'Armando'}]);
+    const [ver, setVer] =React.useState(false)
 
-    const onChangeSearch = query => setSearchQuery(query);
+
+    const onChangeSearch = query =>{
+
+        setVer(true)
+        console.log(ver);
+        setSearchQuery(query);
+
+    }
+
+    const onBlurr = () => {
+      setVer(false)
+    }
 
     return  (
     <PaperProvider>
 
-        <Appbar.Header style={Estilo.header}>
-          {/* <Appbar.Content titleStyle={Estilo.headerTitle} /> */}
-          <Searchbar
+
+
+             <Searchbar
             style={Styles.search}
             placeholder="Buscar"
             onChangeText={onChangeSearch}
+            onBlur={onBlurr}
             value={searchQuery}
-          />
-        </Appbar.Header>
+            />
+
+            <View style={Estilo.content}>
+              <Text>{searchQuery}</Text>
+
+              {
+                 ver?  <Text>Verdade</Text>  : <Text></Text>
+              }
+
+            </View>
 
 
 
@@ -40,9 +62,9 @@ export default function SeachPage({ route, navigation }){
 const Styles = StyleSheet.create({
 
        search: {
-           backgroundColor: "#ED56F7",
-           borderColor: '#fff',
-           color: '#fff'
+
+             marginVertical: 7,
+             marginHorizontal: 14
        }
 
 
