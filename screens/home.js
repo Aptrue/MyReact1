@@ -1,6 +1,6 @@
 
-import  React , { useState, useRef }  from 'react';
-import {  Alert, FlatList, View, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
+import  React , { useState, useRef, useCallback }  from 'react';
+import {  Alert, FlatList, View, ScrollView, TouchableOpacity, StyleSheet, RefreshControl } from 'react-native';
 
 import { FAB, Portal,  Provider, List, Button,  Provider as PaperProvider, Modal, Text, Title, TextInput } from 'react-native-paper';
 import Tarefas from '../components/tarefa';
