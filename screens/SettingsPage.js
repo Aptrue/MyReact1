@@ -34,6 +34,7 @@ async function getUser(){
 
                                 title={'Armando Paulo'}
                                 description={'Web and App Developer '+'ID: TAS2022'}
+                                onPress={ ()=>{ navigation.navigate('Perfil')}}
                                 left={props => <TouchableOpacity onPress={ ()=>{ navigation.navigate('Perfil')}}>
                                         <Avatar.Image {...props}
                                                         source={require('../assets/perfil.jpg')}

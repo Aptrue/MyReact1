@@ -8,6 +8,7 @@ import Detalhes from '../screens/detalhes'
 import Login from '../screens/login'
 import SearchPage from '../screens/SeachPage';
 import { SettingsPage } from '../screens/SettingsPage';
+import { Perfil } from '../screens/Perfil';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { DrawerContentMenu } from '../shared/DrawerContentMenu';
 
@@ -66,7 +67,7 @@ export default function NestedRoute({navigation}) {
       <Stack.Screen name="Detalhes" component={Detalhes} options={ {headerShown: true}}/>
       <Stack.Screen name='Login'   component={Login} options={{ headerShown: false }}></Stack.Screen>
       <Stack.Screen name='Definições' component={SettingsPage}  options={ {headerShown: true}}></Stack.Screen>
-      <Stack.Screen name='Perfil' component={SettingsPage}  options={ {headerShown: true}}></Stack.Screen>
+      <Stack.Screen name='Perfil' component={Perfil}  options={ {headerShown: true}}></Stack.Screen>
     </Stack.Navigator>
 
 

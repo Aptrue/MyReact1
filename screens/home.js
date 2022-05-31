@@ -30,7 +30,7 @@ const Home = ({navigation}) => {
     setModalVisible(true);
   }
   const hideModal = () => setModalVisible(false);
-  const containerStyle = {backgroundColor: 'white', padding: 20, marginVertical: 10};
+  const containerStyle = {backgroundColor: 'white', padding: 20, marginHorizontal: 15};
   //fim modal Variable
 
 
@@ -47,19 +47,18 @@ const Home = ({navigation}) => {
   ]);
 
 
- const adicionarTarefas = ()=>{
+ const adicionarTarefas = (values)=>{
 
     let existe = false; // caso a tarefa exista
 
     todos.forEach( valor => {  // verificar se a tarefa existe
-         if(tarefa.text==valor.text){
+         if(values.text==valor.text){
            existe = true;
          }
     });
 
-    if(tarefa.text!='' && existe==false){ // comparar se o valor nao eh igaual a espaco em branco
-      todos.push(tarefa);
-          setTarefa({text:'', key: 0});  //insreriindo a tarefa
+    if(values.text!='' && existe==false){ // comparar se o valor nao eh igaual a espaco em branco
+      todos.push(values);
           setModalVisible(false);
       } else{
         Alert.alert('Atenção', 'Campo em Branco ou tarefa Repetida');
@@ -73,11 +72,9 @@ const Home = ({navigation}) => {
  //Remover Tarefa
 
  const removerTarefa = (key) =>{
-    setTodos(prevTodos => {
-
-       return prevTodos = todos.filter(prevTodos.key!==key);
-
-    });
+  setTodos(prevTodos => {
+    return prevTodos.filter(todo => todo.key != key);
+  });
  }
 
 
@@ -129,7 +126,7 @@ const Home = ({navigation}) => {
 
 
          </Provider>
-         <Provider>
+                      <Provider>
                         <Portal>
                           <Modal visible={modalVisible} onDismiss={hideModal} contentContainerStyle={containerStyle}>
                           <Title style={styles.modalText}>Criar nova tarefa</Title>
@@ -138,7 +135,8 @@ const Home = ({navigation}) => {
                                       initialValues={tarefa}
                                       onSubmit={(values) => {
 
-                                              console.log(values)
+                                          adicionarTarefas(values);
+                                          console.log(values)
 
                                       } }
 
@@ -147,7 +145,7 @@ const Home = ({navigation}) => {
                                         <View>
                                           <TextInput style={styles.textInput}
 
-                                            placeholder='Email'
+                                            placeholder='Tarefa'
                                             label='Tarefa'
                                             mode='outlined'
                                             onChangeText={props.handleChange('text')}
@@ -160,7 +158,6 @@ const Home = ({navigation}) => {
                                             autoCorrect={false}
                                             label='Descrição'
                                             mode='outlined'
-                                            secureTextEntry={true}
                                             placeholder='descrição'
                                             onChangeText={props.handleChange('des')}
                                             value={props.values.des}
@@ -172,7 +169,7 @@ const Home = ({navigation}) => {
                                               mode='outlined'
                                               placeholder='key'
                                               onChangeText={props.handleChange('key')}
-                                              value={key}
+                                              value={props.values.key=key}
                                               />
 
                                            <Button icon="briefcase-plus-outline" color='#E535F3' mode="contained" onPress={props.handleSubmit}>Adicionar</Button>
@@ -225,8 +222,7 @@ const styles = StyleSheet.create({
     color: '#ffff'
   },
   Inputdesabled: {
-    display: 'none',
-    paddingTop: 10
+    display: 'none'
   }
 });
 

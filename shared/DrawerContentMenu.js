@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, ImageBackground } from 'react-native';
+import { View, StyleSheet, ImageBackground, TouchableOpacity } from 'react-native';
 import {
     useTheme,
     Avatar,
@@ -42,15 +42,21 @@ export function DrawerContentMenu(props) {
                                 {/* Informacoes do Usuario  */}
 
                                 <View style={{flexDirection:'row',marginTop: 15}}>
+                                 <TouchableOpacity>
                                     <Avatar.Image
                                         source={require('../assets/perfil.jpg')}
                                         size={50}
                                     />
+                                 </TouchableOpacity>
+
                                     <View style={{marginLeft:15, flexDirection:'column'}}>
                                         <Title style={styles.title}>Armando Paulo</Title>
                                         <Caption style={styles.caption}>Meu Primeiro App React</Caption>
                                     </View>
                                 </View>
+
+
+
 
                                 {/* Fim Informacoes do Usuario  */}
 
