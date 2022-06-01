@@ -124,22 +124,16 @@ const slides = [
   },
   {
     key: 's2',
-    title: 'Titulo 2',
+    title: 'Refrigeração',
     text: 'Titulo 2',
-    image: {
-      uri:
-        'https://raw.githubusercontent.com/AboutReact/sampleresource/master/intro_flight_ticket_booking.png',
-    },
+    image: require('../../assets/global/ac.png'),
     backgroundColor: '#01B8FC',
   },
   {
     key: 's3',
-    title: 'Titulo 3',
-    text: 'Texto 3',
-    image: {
-      uri:
-        'https://raw.githubusercontent.com/AboutReact/sampleresource/master/intro_discount.png',
-    },
+    title: 'Cyber Security',
+    text: 'Cyber Security',
+    image: require('../../assets/global/cyber.png'),
     backgroundColor: '#5C606C',
   },
   {
