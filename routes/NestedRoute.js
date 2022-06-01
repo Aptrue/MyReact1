@@ -9,6 +9,7 @@ import Login from '../screens/login'
 import SearchPage from '../screens/SeachPage';
 import { SettingsPage } from '../screens/SettingsPage';
 import { Perfil } from '../screens/Perfil';
+import PageIntro from '../screens/Page/PageIntro'
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { DrawerContentMenu } from '../shared/DrawerContentMenu';
 
@@ -68,6 +69,7 @@ export default function NestedRoute({navigation}) {
       <Stack.Screen name='Login'   component={Login} options={{ headerShown: false }}></Stack.Screen>
       <Stack.Screen name='Definições' component={SettingsPage}  options={ {headerShown: true}}></Stack.Screen>
       <Stack.Screen name='Perfil' component={Perfil}  options={ {headerShown: true}}></Stack.Screen>
+      <Stack.Screen name='PageIntro' component={PageIntro}  options={ {headerShown: false}}></Stack.Screen>
     </Stack.Navigator>
 
 

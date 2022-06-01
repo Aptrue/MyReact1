@@ -95,8 +95,8 @@ export function DrawerContentMenu(props) {
                                 size={size}
                                 />
                             )}
-                            label="Registros"
-                            onPress={() => {props.navigation.navigate('BookmarkScreen')}}
+                            label="PageIntro"
+                            onPress={() => {props.navigation.navigate('PageIntro')}}
                         />
                         <DrawerItem
                             icon={({color, size}) => (

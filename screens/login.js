@@ -18,7 +18,7 @@ import Spinner from 'react-native-loading-spinner-overlay';
 
 
 
-export default function login({navigation}){
+export default function Login({navigation}){
 
 
 const [user, setUser] = useState({email:null, password:null});

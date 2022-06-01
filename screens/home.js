@@ -62,6 +62,7 @@ const Home = ({navigation}) => {
           setModalVisible(false);
       } else{
         Alert.alert('Atenção', 'Campo em Branco ou tarefa Repetida');
+        console.log('Campo em Branco ou tarefa Repetida');
 
       }
 
@@ -85,7 +86,7 @@ const Home = ({navigation}) => {
 
 <PaperProvider>
 
-        <HeaderShared pageName="My Fucking Task" navigation={navigation} />
+        <HeaderShared pageName={page} navigation={navigation} />
 
         <ScrollView>
 
@@ -136,15 +137,14 @@ const Home = ({navigation}) => {
                                       onSubmit={(values) => {
 
                                           adicionarTarefas(values);
-                                          console.log(values)
+
 
                                       } }
 
                                       >
                                       {props => (
                                         <View>
-                                          <TextInput style={styles.textInput}
-
+                                          <TextInput style={Estilo.textinput}
                                             placeholder='Tarefa'
                                             label='Tarefa'
                                             mode='outlined'
@@ -152,9 +152,7 @@ const Home = ({navigation}) => {
                                             value={props.values.text}
                                           />
 
-                                          <TextInput style={styles.textInput}
-
-                                            // multiline
+                                        <TextInput style={Estilo.textinput}
                                             autoCorrect={false}
                                             label='Descrição'
                                             mode='outlined'
@@ -163,13 +161,13 @@ const Home = ({navigation}) => {
                                             value={props.values.des}
                                           />
 
-                                              <TextInput style={styles.Inputdesabled}
-                                              disabled
-                                              label='key'
-                                              mode='outlined'
-                                              placeholder='key'
-                                              onChangeText={props.handleChange('key')}
-                                              value={props.values.key=key}
+                                           <TextInput style={styles.Inputdesabled}
+                                            disabled
+                                            label='key'
+                                            mode='outlined'
+                                            placeholder='key'
+                                            onChangeText={props.handleChange('key')}
+                                            value={props.values.key=key}
                                               />
 
                                            <Button icon="briefcase-plus-outline" color='#E535F3' mode="contained" onPress={props.handleSubmit}>Adicionar</Button>

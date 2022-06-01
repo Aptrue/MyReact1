@@ -18,8 +18,9 @@ export  function SettingsPage({navigation}){
 async function getUser(){
 
     await AsyncStorage.getItem('user').then((res)=>{
-          setName(res);
-    })
+                console.log(res);
+    }
+    );
 
 }
 
