@@ -1,6 +1,5 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import {
-  SafeAreaView,
   StyleSheet,
   View,
   Text,
@@ -9,6 +8,8 @@ import {
 } from 'react-native';
 
 import AppIntroSlider from 'react-native-app-intro-slider';
+import Home2 from './home2';
+
 
 
 const PageIntro = () => {
@@ -44,20 +45,7 @@ const PageIntro = () => {
   return (
     <>
       {showRealApp ? (
-        <SafeAreaView style={styles.container}>
-          <View style={styles.container}>
-            <Text style={styles.titleStyle}>
-              Home aqui
-            </Text>
-            <Text style={styles.paragraphStyle}>
-             .........
-            </Text>
-            <Button
-              title="Voltar a ver o slide"
-              onPress={() => setShowRealApp(false)}
-            />
-          </View>
-        </SafeAreaView>
+            <Home2/>
       ) : (
         <AppIntroSlider
           data={slides}
@@ -118,7 +106,7 @@ const slides = [
   {
     key: 's1',
     text: 'Encontre aqui a solução mais \n\n próxima de ti',
-    title: 'Bem Vindo a Verlope',
+    title: 'Bem Vindo Ap',
     image: require('../../assets/global/verlope.png'),
     backgroundColor: '#FFC54A',
   },
